@@ -29,7 +29,7 @@ module ServiceNow
       end
 
       def table_name
-        to_s.downcase.split('::').last
+        to_s.split('::').last.gsub(/([a-z\d])([A-Z])/,'\1_\2').downcase
       end
 
       def exec(method, path, params, auth)
