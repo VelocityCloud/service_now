@@ -25,12 +25,12 @@ describe ServiceNow::Incident do
     it 'creates a record' do
       VCR.use_cassette('create_incident') do
         params =  { 
-          :active => 'false',
-          :category => 'network',
-          :description => 'User cannot access email on mail.company.com.',
-          :knowledge => 'false',
-          :made_sla => 'false',
-          :short_description => 'Cannot read email'
+          active: 'false',
+          category: 'network',
+          description: 'User cannot access email on mail.company.com.',
+          knowledge: 'false',
+          made_sla: 'false',
+          short_description: 'Cannot read email'
         } 
         expect(ServiceNow::Incident.create(params, auth)['sys_id']).to eql('9719345913621ec0fef07d322244b058')
       end
