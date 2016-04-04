@@ -1,7 +1,7 @@
 require 'httparty'
 
 module ServiceNow
-  class Base
+  class Table
     include HTTParty
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
 
