@@ -36,4 +36,13 @@ describe ServiceNow::Incident do
       end
     end
   end
+
+  describe '.update' do
+    it 'updates a record' do
+      VCR.use_cassette('update_incident') do
+        params =  { active: 'true' } 
+        expect(ServiceNow::Incident.update('9719345913621ec0fef07d322244b058', params, auth)['active']).to be_truthy
+      end
+    end
+  end
 end

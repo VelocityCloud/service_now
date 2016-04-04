@@ -17,6 +17,10 @@ module ServiceNow
       exec :post, "", params, auth
     end
 
+    def self.update(sys_id, params, auth)
+      exec :patch, "/#{sys_id}", params, auth
+    end
+
     def self.url(auth)
       "https://#{auth[:host]}/api/now/table/#{table_name}"
     end
