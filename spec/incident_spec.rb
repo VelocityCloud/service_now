@@ -3,6 +3,16 @@ require 'spec_helper'
 describe ServiceNow::Incident do
   let(:auth) { { host: ENV['SN_HOST'], user: ENV['SN_USER'], password: ENV['SN_PASSWORD'] } }
 
+  describe '.all' do
+    it 'finds records by the params' do
+      VCR.use_cassette('incidents') do
+        incidents = ServiceNow::Incident.all({ sysparm_limit: 25 }, auth)
+        expect(incidents.size).to eql(25)
+        expect(incidents[0]['number']).to eql('INC0012720')
+      end
+    end
+  end
+
   describe '.find' do
     it 'finds a record by the sys id' do
       VCR.use_cassette('incident') do

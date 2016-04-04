@@ -5,6 +5,10 @@ module ServiceNow
     include HTTParty
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
 
+    def self.all(params = {}, auth)
+      exec :get, "?#{build_query(params)}", {}, auth
+    end
+
     def self.find(sys_id, auth)
       exec :get, "/#{sys_id}", {}, auth
     end
@@ -23,6 +27,10 @@ module ServiceNow
 
     def self.exec(method, path, params, auth)
       send(method, "#{url(auth)}#{path}", body: params.to_json, basic_auth: { username: auth[:user], password: auth[:password] })['result']
+    end
+
+    def self.build_query(params)
+      params.to_a.map { |name, value| "#{name}=#{value}" }.join('&')
     end
   end
 end
