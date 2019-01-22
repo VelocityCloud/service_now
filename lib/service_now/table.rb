@@ -33,7 +33,7 @@ module ServiceNow
       end
 
       def exec(method, path, params, auth)
-        send(method, "#{url(auth)}#{path}", body: params.to_json, basic_auth: { username: auth[:user], password: auth[:password] })['result']
+        send(method, "#{url(auth)}#{path}", body: params.to_json, basic_auth: { username: auth[:user], password: auth[:password] })
       end
 
       def build_query(params)
