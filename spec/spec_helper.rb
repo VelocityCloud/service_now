@@ -10,5 +10,7 @@ VCR.configure do |c|
   c.filter_sensitive_data('<SN_PASSWORD>') { ENV['SN_PASSWORD'] }
   c.before_record do |i|
     i.response.body.force_encoding 'UTF-8'
+    i.request.headers.delete('Authorization')
+    i.response.headers.delete('Set-Cookie')
   end
 end

@@ -22,6 +22,10 @@ module ServiceNow
         exec :patch, "/#{sys_id}", params, auth
       end
 
+      def destroy(sys_id, auth)
+        exec :delete, "/#{sys_id}", {}, auth
+      end
+
       private
 
       def url(auth)
