@@ -1,6 +1,8 @@
-require "service_now/table"
-require "service_now/identify"
-require "service_now/version"
+# frozen_string_literal: true
+
+require 'service_now/table'
+require 'service_now/identify'
+require 'service_now/version'
 
 module ServiceNow
   def self.const_missing(name)

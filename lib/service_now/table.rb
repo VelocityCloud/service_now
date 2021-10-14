@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'httparty'
 
 module ServiceNow
@@ -15,7 +17,7 @@ module ServiceNow
       end
 
       def create(params, auth)
-        exec :post, "", params, auth
+        exec :post, '', params, auth
       end
 
       def update(sys_id, params, auth)
@@ -33,11 +35,12 @@ module ServiceNow
       end
 
       def table_name
-        to_s.split('::').last.gsub(/([A-Z\d]+)([A-Z][a-z])/,'\1_\2').gsub(/([a-z\d])([A-Z])/,'\1_\2').downcase
+        to_s.split('::').last.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z\d])([A-Z])/, '\1_\2').downcase
       end
 
       def exec(method, path, params, auth)
-        send(method, "#{url(auth)}#{path}", body: params.to_json, basic_auth: { username: auth[:user], password: auth[:password] })
+        send(method, "#{url(auth)}#{path}", body: params.to_json,
+                                            basic_auth: { username: auth[:user], password: auth[:password] })
       end
 
       def build_query(params)

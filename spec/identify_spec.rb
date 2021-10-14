@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -10,7 +11,7 @@ describe ServiceNow::Identify do
         body = {
           items: [
             className: 'cmdb_ci_server',
-            values: { 
+            values: {
               hostname: 'test123',
               active: 'false',
               category: 'network',
